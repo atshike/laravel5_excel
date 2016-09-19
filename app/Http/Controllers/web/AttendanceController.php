@@ -55,9 +55,9 @@ class AttendanceController extends Controller
                 static::setMergeCells($excel, 'E' . ($y + 4) . ':H' . ($y + 4), 'E' . ($y + 4), '加班【】');
                 static::overTimeHours($excel, $y);
                 static::excelNo($excel, $y);
-                $excel->setBorder('A1:Y' . $y, 'thin');
+                $excel->setBorder('A1:X' . $y, 'thin');
                 $excel->setBorder('A' . ($y + 4) . ':C' . ($y + 6), 'thin');
-                $excel->setBorder('W' . ($y + 3) . ':Y' . ($y + 6), 'thin');
+                $excel->setBorder('V' . ($y + 3) . ':X' . ($y + 6), 'thin');
                 $excel->setBorder('E' . ($y + 4) . ':H' . ($y + 6), 'thin');
             });
         })->download('xlsx');
@@ -116,7 +116,7 @@ class AttendanceController extends Controller
         static::setMergeCells($excel, 'G' . $row . ':H' . $row, 'G' . $row);
         static::setMergeCells($excel, 'I' . $row . ':J' . $row, 'I' . $row);
         static::setMergeCells($excel, 'R' . $row . ':T' . $row, 'R' . $row);
-        static::setMergeCells($excel, 'U' . $row . ':Y' . $row, 'U' . $row);
+        static::setMergeCells($excel, 'U' . $row . ':X' . $row, 'U' . $row);
     }
 
     /**
@@ -151,25 +151,26 @@ class AttendanceController extends Controller
      */
     private function overTimeHours($excel, $row, $rows = '')
     {
-        static::setCells($excel, 'Y1', '员工签字');
-        static::setMergeCells($excel, 'Y2:Y4', 'Y2', '');
+        static::setCells($excel, 'X1', '员工签字');
+        static::setMergeCells($excel, 'X2:X4', 'X2', '');
         static::setMergeCells($excel, 'P1:Q1', 'P1', '姓　　名');
-        static::setMergeCells($excel, 'R1:X1', 'S1', '');
+        static::setMergeCells($excel, 'R1:W1', 'R1', '');
         static::setMergeCells($excel, 'P2:Q2', 'P2', '员工编号');
-        static::setMergeCells($excel, 'R2:X2', 'S2', '');
+        static::setMergeCells($excel, 'R2:W2', 'R2', '');
         static::setMergeCells($excel, 'Z2:AA2', 'Z2', '');
         static::setCells($excel, 'V3', '');
         static::setCells($excel, 'S3', '~');
         static::setCells($excel, 'X3', '');
-        static::setCells($excel, 'V3', '工作时长');
+        static::setCells($excel, 'U3', '工作时长');
         static::setCells($excel, 'Z3', '');
-        static::setCells($excel, 'X3', '小时');
+        static::setCells($excel, 'W3', '小时');
         static::setMergeCells($excel, 'P3:Q3', 'P3', '工作时间');
         static::setMergeCells($excel, 'P4:Q4', 'P4', '工作天数');
-        static::setCells($excel, 'U4', '日');
-        static::setCells($excel, 'V4', '休息时间');
+        static::setMergeCells($excel, 'R4:S4', 'R4', '');
+        static::setCells($excel, 'T4', '日');
+        static::setCells($excel, 'U4', '休息时间');
         static::setCells($excel, 'Z4', '');
-        static::setCells($excel, 'X4', '小时');
+        static::setCells($excel, 'W4', '小时');
         static::setMergeCells($excel, 'A5:J5', 'A5', '规定工作时间');
         static::setMergeCells($excel, 'N5:N6', 'N5', '规定时间');
         static::setMergeCells($excel, 'K5:M5', 'K5', '加班');
@@ -177,7 +178,7 @@ class AttendanceController extends Controller
         static::setMergeCells($excel, 'P5:P6', 'P5', '终差');
         static::setMergeCells($excel, 'Q5:Q6', 'Q5', '扣除');
         static::setMergeCells($excel, 'R5:T6', 'R5', '扣除理由');
-        static::setMergeCells($excel, 'U5:Y6', 'U5', '备注');
+        static::setMergeCells($excel, 'U5:X6', 'U5', '备注');
         static::setMergeCells($excel, 'A6:B6', 'A6', '日期');
         static::setMergeCells($excel, 'C6:D6', 'C6', '分类');
         static::setMergeCells($excel, 'E6:F6', 'E6', '开始');
@@ -187,11 +188,11 @@ class AttendanceController extends Controller
         static::setCells($excel, 'L6', '休息');
         static::setCells($excel, 'M6', '加班');
         static::setCells($excel, 'A' . ($row + 2), '分类：1.出勤  2.事假  3.病假');
-        static::setMergeCells($excel, 'W' . ($row + 3) . ':Y' . ($row + 3), 'W' . ($row + 3), '经理签字');
+        static::setMergeCells($excel, 'V' . ($row + 3) . ':X' . ($row + 3), 'V' . ($row + 3), '经理签字');
+        static::setMergeCells($excel, 'V' . ($row + 4) . ':V' . ($row + 6), 'V' . ($row + 4), '');
         static::setMergeCells($excel, 'W' . ($row + 4) . ':W' . ($row + 6), 'W' . ($row + 4), '');
         static::setMergeCells($excel, 'X' . ($row + 4) . ':X' . ($row + 6), 'X' . ($row + 4), '');
-        static::setMergeCells($excel, 'Y' . ($row + 4) . ':Y' . ($row + 6), 'Y' . ($row + 4), '');
-        static::setCenter($excel, 'B1' . ':Y' . ($row + 6));
+        static::setCenter($excel, 'B1' . ':X' . ($row + 6));
         static::setCenter($excel, 'A1');
         static::setCenter($excel, 'A5');
         static::setCenter($excel, 'A6');
