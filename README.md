@@ -20,7 +20,7 @@
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
      ],
 - 增加route：Route::any('/explore', 'web\AttendanceController@excel');
-- < a href="{{url('/explore?month=').date("Y-m", time())}}">导出考勤</a >
+- < a href="{{url('/explore?month=').date("Y-m", time())}}">导出考勤< /a>
 
 
 ##备注
